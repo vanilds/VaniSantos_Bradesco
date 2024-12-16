@@ -1,27 +1,106 @@
-# AngularVaniApp
+Angular Vani App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.1.
+Este projeto é uma aplicação Angular divertida que demonstra conceitos avançados, como injeção de dependência, gerenciamento de estado com Redux, criação de diretivas personalizadas e design focado em performance. O objetivo principal é criar uma interface interativa que pergunta ao usuário: "Fui contratada?".
 
-## Development server
+A interface possui três botões principais:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Sim: Ao clicar, exibe uma imagem indicando que você foi contratada. e um botão "Voltar".
 
-## Code scaffolding
+Não: Este botão foge do mouse quando tenta-se clicar nele, criando uma interação divertida.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Voltar: Retorna à tela inicial para reiniciar a interação.
 
-## Build
+Estrutura do Projeto
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+O projeto está organizado em pastas para melhor modularização e organização do código:
 
-## Running unit tests
+src/app
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+componentes
 
-## Running end-to-end tests
+main
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Componente principal que organiza o layout da aplicação.
 
-## Further help
+Exibe o componente PerguntaComponent.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Otimizado com ChangeDetectionStrategy.OnPush para melhorar a performance.
+
+pergunta
+
+Gerencia a lógica principal da aplicação.
+
+Controla a exibição dos botões e da imagem ao ser contratada.
+
+botao-sim
+
+Componente que representa o botão "Sim".
+
+botao-nao
+
+Componente que representa o botão "Não".
+
+Inclui a lógica de fuga através da diretiva RunawayDirective.
+
+botao-voltar
+
+Componente que representa o botão "Voltar".
+
+Aparece ao clicar no botão "Sim" e retorna à tela inicial.
+
+diretivas
+
+runaway.directive.ts
+
+Aplica o comportamento "fugir" ao botão "Não".
+
+Reposiciona o botão aleatoriamente na tela ao passar o mouse sobre ele.
+
+store
+
+runaway.reducer.ts
+
+Configuração inicial do estado com NgRx.
+
+Os estilos estão distribuídos em arquivos SCSS dentro das pastas dos componentes correspondentes.
+
+O estilo principal da aplicação é definido em main.component.scss.
+
+Como Rodar o Projeto
+
+Clone o repositório:
+
+git clone https://github.com/vanilds/VaniSantos_Bradesco.git
+cd angular-vani-app
+
+Instale as dependências:
+
+npm install
+
+Rode o servidor de desenvolvimento:
+
+ng serve
+
+Acesse a aplicação no navegador em: http://localhost:4200
+
+Demonstração
+
+A aplicação exibe:
+
+Uma pergunta no centro da tela: "Fui contratada?".
+
+Dois botões: "Sim" e "Não".
+
+Ao clicar em "Sim", uma imagem aparece confirmando a contrataçã.
+
+Um botão "Voltar" é exibido, permitindo reiniciar a interaçãoo.
+
+Ao tentar clicar em "Não", o botão se move para evitar o clique.
+
+Melhorias Futuras
+
+Adicionar animações ao botão "Não" para criar uma experiência mais fluida.
+
+Melhorar a acessibilidade para garantir que todos os usuários possam interagir.
+
+Internacionalização para suportar múltiplos idiomas.
