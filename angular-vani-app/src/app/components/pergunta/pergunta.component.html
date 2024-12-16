@@ -1,0 +1,6 @@
+<h1>Fui contratada?</h1>
+<botao-sim *ngIf="!contratada" (click)="onSimClick()"></botao-sim>
+<botao-nao *ngIf="!contratada"></botao-nao>
+<img *ngIf="contratada" class="foto" src="assets/foto.png" alt="Contratada!" />
+<div *ngIf="contratada"><iframe src="https://giphy.com/embed/BlVnrxJgTGsUw" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div>
+<botao-voltar *ngIf="contratada" (click)="onVoltarClick()"></botao-voltar>
