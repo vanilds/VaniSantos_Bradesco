@@ -1,106 +1,100 @@
-Angular Vani App
+# Documentação do Projeto
 
-Este projeto é uma aplicação Angular divertida que demonstra conceitos avançados, como injeção de dependência, gerenciamento de estado com Redux, criação de diretivas personalizadas e design focado em performance. O objetivo principal é criar uma interface interativa que pergunta ao usuário: "Fui contratada?".
+## Visão Geral
+Este projeto é um aplicativo Angular desenvolvido para demonstração de funcionalidades específicas, como gerenciamento de estado com NgRx, interatividade com diretivas personalizadas, e uso de componentes modulares.
 
-A interface possui três botões principais:
+## Estrutura do Projeto
+O projeto está estruturado seguindo práticas recomendadas do Angular:
 
-Sim: Ao clicar, exibe uma imagem indicando que você foi contratada. e um botão "Voltar".
+- **src/app/components/**: Contém os componentes principais da aplicação, como botões e a página principal.
+- **src/app/directives/**: Inclui diretivas personalizadas, como a `RunawayDirective`.
+- **src/app/store/**: Gerencia o estado global usando NgRx.
+- **src/assets/**: Contém imagens e recursos estáticos.
 
-Não: Este botão foge do mouse quando tenta-se clicar nele, criando uma interação divertida.
+## Funcionalidades Principais
 
-Voltar: Retorna à tela inicial para reiniciar a interação.
+1. **Gerenciamento de Estado:** 
+   - Usando NgRx para centralizar e gerenciar estados globais.
+   - Exemplo: `runawayButtonReducer` para controlar interações do botão "runaway".
 
-Estrutura do Projeto
+2. **Interatividade com Diretivas:**
+   - A `RunawayDirective` move um botão para uma posição aleatória quando o mouse passa por cima dele.
 
-O projeto está organizado em pastas para melhor modularização e organização do código:
+3. **Componentes Modulares:**
+   - Componentes reutilizáveis como botões "Sim", "Não" e "Voltar".
 
-src/app
+## Configuração e Execução
 
-componentes
+### Pré-requisitos
+Certifique-se de ter instalado:
+- Node.js (>= 14.x)
+- Angular CLI (>= 15.x)
 
-main
+### Passos para Execução
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/vanilds/VaniSantos_Bradesco.git
+   ```
 
-Componente principal que organiza o layout da aplicação.
+2. Acesse o diretório do projeto:
+   ```bash
+   cd angular-vani-app
+   ```
 
-Exibe o componente PerguntaComponent.
+3. Instale as dependências:
+   ```bash
+   npm install
+   ```
 
-Otimizado com ChangeDetectionStrategy.OnPush para melhorar a performance.
+4. Execute o servidor de desenvolvimento:
+   ```bash
+   ng serve
+   ```
 
-pergunta
+5. Acesse a aplicação no navegador em [http://localhost:4200](http://localhost:4200).
 
-Gerencia a lógica principal da aplicação.
+## Explicação do Código
 
-Controla a exibição dos botões e da imagem ao ser contratada.
+### Diretiva `RunawayDirective`
+Esta diretiva adiciona uma funcionalidade interativa ao botão, fazendo com que ele "fuja" do mouse.
+```typescript
+@Directive({
+  selector: '[appRunaway]'
+})
+export class RunawayDirective {
+  constructor(private el: ElementRef) {}
 
-botao-sim
+  @HostListener('mouseenter') onMouseEnter() {
+    const button = this.el.nativeElement;
+    const maxWidth = window.innerWidth - button.offsetWidth;
+    const maxHeight = window.innerHeight - button.offsetHeight;
 
-Componente que representa o botão "Sim".
+    button.style.position = 'absolute';
+    button.style.top = `${Math.random() * maxHeight}px`;
+    button.style.left = `${Math.random() * maxWidth}px`;
+  }
+}
+```
+**Propósito:** Proporcionar uma experiência interativa e divertida ao usuário.
 
-botao-nao
+### Componente `MainComponent`
+Este componente é o ponto central da aplicação, carregando a interface principal.
+```typescript
+@Component({
+  selector: 'main-component',
+  templateUrl: './main.component.html',
+  styleUrls: ['./main.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class MainComponent {}
+```
+**Propósito:** Estruturar e exibir a interface principal da aplicação.
 
-Componente que representa o botão "Não".
+## Melhorias Futuras
+- Implementar testes unitários para cobertura de código.
+- Adicionar validações para melhorar a experiência do usuário.
+- Internacionalização (i18n) para suporte a múltiplos idiomas.
 
-Inclui a lógica de fuga através da diretiva RunawayDirective.
-
-botao-voltar
-
-Componente que representa o botão "Voltar".
-
-Aparece ao clicar no botão "Sim" e retorna à tela inicial.
-
-diretivas
-
-runaway.directive.ts
-
-Aplica o comportamento "fugir" ao botão "Não".
-
-Reposiciona o botão aleatoriamente na tela ao passar o mouse sobre ele.
-
-store
-
-runaway.reducer.ts
-
-Configuração inicial do estado com NgRx.
-
-Os estilos estão distribuídos em arquivos SCSS dentro das pastas dos componentes correspondentes.
-
-O estilo principal da aplicação é definido em main.component.scss.
-
-Como Rodar o Projeto
-
-Clone o repositório:
-
-git clone https://github.com/vanilds/VaniSantos_Bradesco.git
-cd angular-vani-app
-
-Instale as dependências:
-
-npm install
-
-Rode o servidor de desenvolvimento:
-
-ng serve
-
-Acesse a aplicação no navegador em: http://localhost:4200
-
-Demonstração
-
-A aplicação exibe:
-
-Uma pergunta no centro da tela: "Fui contratada?".
-
-Dois botões: "Sim" e "Não".
-
-Ao clicar em "Sim", uma imagem aparece confirmando a contrataçã.
-
-Um botão "Voltar" é exibido, permitindo reiniciar a interaçãoo.
-
-Ao tentar clicar em "Não", o botão se move para evitar o clique.
-
-Melhorias Futuras
-
-Adicionar animações ao botão "Não" para criar uma experiência mais fluida.
-
-Melhorar a acessibilidade para garantir que todos os usuários possam interagir.
-
-Internacionalização para suportar múltiplos idiomas.
+---
+Caso tenha dúvidas ou sugestões, sinta-se à vontade para contribuir!
+Email: vani_santos2@hotmail.com
